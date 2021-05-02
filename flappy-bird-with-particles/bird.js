@@ -9,9 +9,11 @@ class Bird {
     }
 
     update(){
-        // pull player downwards 
-        if(this.y > canvas.height - (this.height * 3)) {
-            this.y = canvas.height - (this.height * 3);
+        // add small up/down motion when idle
+        let curve = Math.sin(angle) * 15;
+        // pull player downwards and ensure player does not go off screen
+        if(this.y > canvas.height - (this.height * 3) + curve) {
+            this.y = canvas.height - (this.height * 3) + curve;
             this.vy = 0;
         } else {
         this.vy += this.weight;
@@ -24,8 +26,9 @@ class Bird {
             this.y = 0 + this.height;
             this.vy = 0;
         }
-
-        if(spacePressed) this.flap();
+        
+        // provide some wobble when player reaches top of screen limits
+        if(spacePressed && this.y > this.height * 3) this.flap();
     }   
 
 

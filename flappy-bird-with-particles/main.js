@@ -16,17 +16,21 @@ function animate() {
     //ctx.fillRect(10, canvas.width - 90, 50, 50);
     bird.update();
     bird.draw();
+    handleParticles();
+    // recurisive call to run main game loop
     requestAnimationFrame(animate);
+    angle+=0.12;
+    hue++;
 }
 
 animate();
 
 window.addEventListener('keydown', function(e) {
-    console.log('Keydown');
+    //console.log('Keydown');
     if (e.code === 'Space') spacePressed = true;
 })
 
 window.addEventListener('keyup', function(e) {
-    console.log('Keyup');
+    //console.log('Keyup');
     if (e.code === 'Space') spacePressed = false;
 })
